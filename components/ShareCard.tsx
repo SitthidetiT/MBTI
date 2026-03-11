@@ -19,6 +19,10 @@ export default function ShareCard({ typeKey, identity, nickname, group, lang }: 
 
   const handleDownload = async () => {
     if (!cardRef.current) return;
+
+    // Ensure all custom fonts are fully loaded before capturing
+    await document.fonts.ready;
+
     const html2canvas = (await import('html2canvas')).default;
     const canvas = await html2canvas(cardRef.current, {
       scale: 2,
@@ -54,18 +58,38 @@ export default function ShareCard({ typeKey, identity, nickname, group, lang }: 
       >
         <div className="text-5xl">🧠</div>
         <div
-          style={{ color: colors.accent, borderColor: colors.accent }}
+          style={{
+            color: colors.accent,
+            borderColor: colors.accent,
+            fontFamily: '"Kanit", sans-serif',
+          }}
           className="border-2 rounded-full px-4 py-1 text-xs font-semibold uppercase tracking-widest"
         >
           {lang === 'th' ? 'บุคลิกภาพของคุณ' : 'Your Personality'}
         </div>
-        <div style={{ color: colors.accent }} className="text-7xl font-bold font-['Kanit']">
+        <div
+          style={{ color: colors.accent, fontFamily: '"Kanit", sans-serif' }}
+          className="text-7xl font-bold"
+        >
           {typeKey}
         </div>
-        <div className="text-2xl font-semibold font-['Kanit'] text-[var(--text)]">-{identity}</div>
-        <div className="text-lg text-[var(--text-muted)] font-medium">{nickname[lang]}</div>
+        <div
+          className="text-2xl font-semibold text-[var(--text)]"
+          style={{ fontFamily: '"Kanit", sans-serif' }}
+        >
+          -{identity}
+        </div>
+        <div
+          className="text-lg text-[var(--text-muted)] font-medium"
+          style={{ fontFamily: '"Kanit", sans-serif' }}
+        >
+          {nickname[lang]}
+        </div>
         <div className="w-12 h-0.5 mt-2" style={{ backgroundColor: colors.accent }} />
-        <p className="text-xs text-[var(--text-muted)] text-center">
+        <p
+          className="text-xs text-[var(--text-muted)] text-center"
+          style={{ fontFamily: '"Kanit", sans-serif' }}
+        >
           {tx.share_card_sub as string}
         </p>
       </div>
