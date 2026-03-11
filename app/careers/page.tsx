@@ -150,12 +150,10 @@ export default function CareersPage() {
 
         <div className="text-center mt-10">
           <Link
-            href="/test?mode=detailed"
-            className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold hover:scale-105 transition-all shadow-lg"
+            href="/career-test"
+            className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-amber-500 to-[var(--accent)] text-white font-semibold hover:scale-105 transition-all shadow-lg text-lg"
           >
-            {lang === 'th'
-              ? '🔬 ทดสอบแบบละเอียดเพื่อค้นหาอาชีพของคุณ'
-              : '🔬 Take the detailed test to find your career'}
+            {lang === 'th' ? '🎯 ทำแบบทดสอบอาชีพ (20 ข้อ)' : '🎯 Take the Career Quiz (20 Q)'}
           </Link>
         </div>
       </div>
