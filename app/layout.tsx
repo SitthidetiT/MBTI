@@ -43,11 +43,16 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
+import Footer from '@/components/Footer';
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="th">
       <body className={`${kanit.variable} ${notoSansThai.variable}`}>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          {children}
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );
