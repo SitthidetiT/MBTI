@@ -82,23 +82,24 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-20 grid grid-cols-3 gap-6 max-w-2xl mx-auto"
+          className="mt-20 grid grid-cols-4 gap-4 max-w-3xl mx-auto"
         >
           {(
             [
-              { num: '60', label: lang === 'th' ? 'คำถาม' : 'Questions' },
+              { num: '120', label: lang === 'th' ? 'คำถาม' : 'Questions' },
               { num: '5', label: lang === 'th' ? 'มิติตัดสิน' : 'Dimensions' },
               { num: '16', label: lang === 'th' ? 'บุคลิกภาพ' : 'Types' },
+              { num: '11+', label: lang === 'th' ? 'ด้านวิเคราะห์' : 'Sections' },
             ] as const
           ).map(({ num, label }) => (
             <div
               key={num}
-              className="group relative bg-white/60 backdrop-blur-md rounded-3xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white hover:shadow-[0_8px_30px_rgb(139,92,246,0.12)] hover:-translate-y-1 transition-all duration-300"
+              className="group relative bg-white/60 backdrop-blur-md rounded-3xl p-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white hover:shadow-[0_8px_30px_rgb(139,92,246,0.12)] hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-violet-600 to-indigo-500 mb-2 group-hover:scale-105 transition-transform">
+              <div className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-violet-600 to-indigo-500 mb-1 group-hover:scale-105 transition-transform">
                 {num}
               </div>
-              <div className="text-sm font-medium text-[var(--text-muted)]">{label}</div>
+              <div className="text-xs font-medium text-[var(--text-muted)]">{label}</div>
             </div>
           ))}
         </motion.div>
@@ -109,15 +110,20 @@ export default function HomePage() {
       </div>
 
       {/* 16 Types grid */}
-      <section className="py-16 px-4 max-w-3xl mx-auto">
+      <section className="py-16 px-4 max-w-5xl mx-auto">
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-2xl sm:text-3xl font-bold text-center text-[var(--text)] mb-12"
+          className="text-2xl sm:text-3xl font-bold text-center text-[var(--text)] mb-4"
         >
           {tx.groups_title as string}
         </motion.h2>
+        <p className="text-center text-[var(--text-muted)] mb-10 text-sm">
+          {lang === 'th'
+            ? 'คลิกที่แต่ละประเภทเพื่อดูรายละเอียดทั้งหมด'
+            : 'Click each type to view full details'}
+        </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {GROUPS.map(({ key, types }, gi) => {
@@ -151,25 +157,24 @@ export default function HomePage() {
                   {types.map((code) => {
                     const p = personalities[code as keyof typeof personalities];
                     return (
-                      <div
-                        key={code}
-                        className="group bg-white/70 backdrop-blur-md hover:bg-white rounded-2xl px-4 py-3 flex items-center gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-default border border-white/50"
-                      >
-                        <span className="text-2xl group-hover:scale-110 transition-transform duration-300 origin-bottom">
-                          {p.emoji}
-                        </span>
-                        <div>
-                          <div
-                            className="font-bold text-sm tracking-wide"
-                            style={{ color: colors.accent }}
-                          >
-                            {code}
-                          </div>
-                          <div className="text-[11px] sm:text-xs font-medium text-[var(--text-muted)] mt-0.5">
-                            {p.nickname[lang]}
+                      <Link href={`/types/${code.toLowerCase()}`} key={code}>
+                        <div className="group bg-white/70 backdrop-blur-md hover:bg-white rounded-2xl px-4 py-3 flex items-center gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer border border-white/50">
+                          <span className="text-2xl group-hover:scale-110 transition-transform duration-300 origin-bottom">
+                            {p.emoji}
+                          </span>
+                          <div>
+                            <div
+                              className="font-bold text-sm tracking-wide"
+                              style={{ color: colors.accent }}
+                            >
+                              {code}
+                            </div>
+                            <div className="text-[11px] sm:text-xs font-medium text-[var(--text-muted)] mt-0.5">
+                              {p.nickname[lang]}
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      </Link>
                     );
                   })}
                 </div>
@@ -182,14 +187,97 @@ export default function HomePage() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="text-center mt-8"
         >
           <Link
-            href="/test"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[var(--accent)] text-white font-semibold text-lg hover:opacity-90 hover:scale-105 transition-all shadow-lg shadow-violet-200"
+            href="/types"
+            className="text-sm font-semibold text-[var(--accent)] hover:underline"
           >
-            {tx.hero_cta as string} →
+            {lang === 'th' ? 'ดูรายละเอียดทั้ง 16 ประเภท →' : 'View all 16 types in detail →'}
           </Link>
+        </motion.div>
+      </section>
+
+      {/* Feature Sections */}
+      <section className="py-12 px-4 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              icon: '🎯',
+              href: '/careers',
+              thTitle: 'เส้นทางอาชีพ',
+              enTitle: 'Career Paths',
+              thDesc:
+                'ค้นพบอาชีพที่เหมาะกับบุคลิกภาพของคุณ ทำแบบทดสอบอาชีพเพื่อค้นหาจุดแข็งในการทำงาน',
+              enDesc:
+                'Discover careers matching your personality. Take the career quiz to find your work strengths.',
+              color: '#f59e0b',
+            },
+            {
+              icon: '📚',
+              href: '/articles',
+              thTitle: 'บทความ MBTI',
+              enTitle: 'MBTI Articles',
+              thDesc: 'อ่านบทความให้ความรู้เกี่ยวกับ MBTI อาชีพ ความสัมพันธ์ และการพัฒนาตัวเอง',
+              enDesc: 'Read articles about MBTI, careers, relationships, and self-improvement.',
+              color: '#10b981',
+            },
+            {
+              icon: '⚡',
+              href: '/services',
+              thTitle: 'บริการของเรา',
+              enTitle: 'Our Services',
+              thDesc: 'เครื่องมือประเมินบุคลิกภาพ วิเคราะห์เชิงลึก แนะนำอาชีพ และอื่นๆ ทั้งหมดฟรี',
+              enDesc: 'Personality assessment tools, deep analysis, career guidance — all free.',
+              color: '#8b5cf6',
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <Link href={item.href}>
+                <div className="bg-white/70 backdrop-blur-md rounded-2xl border border-[var(--border)] p-6 hover:shadow-lg hover:-translate-y-1 transition-all h-full">
+                  <div className="text-4xl mb-3">{item.icon}</div>
+                  <h3 className="text-lg font-bold mb-2" style={{ color: item.color }}>
+                    {lang === 'th' ? item.thTitle : item.enTitle}
+                  </h3>
+                  <p className="text-sm text-[var(--text-muted)] leading-relaxed">
+                    {lang === 'th' ? item.thDesc : item.enDesc}
+                  </p>
+                  <p className="text-xs font-semibold mt-3" style={{ color: item.color }}>
+                    {lang === 'th' ? 'อ่านเพิ่มเติม →' : 'Learn more →'}
+                  </p>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Bottom CTA */}
+      <section className="py-16 px-4 max-w-3xl mx-auto text-center">
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+          <h2 className="text-2xl font-bold text-[var(--text)] mb-4">
+            {lang === 'th' ? '🚀 พร้อมค้นพบตัวเองแล้วหรือยัง?' : '🚀 Ready to discover yourself?'}
+          </h2>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/test?mode=standard"
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-violet-600 to-[var(--accent)] text-white font-semibold hover:scale-105 transition-all shadow-lg"
+            >
+              📝 {lang === 'th' ? 'แบบมาตรฐาน (60 ข้อ)' : 'Standard (60Q)'}
+            </Link>
+            <Link
+              href="/test?mode=detailed"
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold hover:scale-105 transition-all shadow-lg"
+            >
+              🔬 {lang === 'th' ? 'แบบละเอียด (120 ข้อ)' : 'Detailed (120Q)'}
+            </Link>
+          </div>
         </motion.div>
       </section>
     </main>

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import { useLang } from '@/context/LanguageContext';
 import { personalities, GROUP_COLORS } from '@/data/personalities';
-import type { TypeCode, Group, Lang } from '@/types';
+import type { TypeCode, Group } from '@/types';
 
 const groups: { key: Group; types: TypeCode[]; th: string; en: string }[] = [
   {
@@ -50,8 +50,8 @@ export default function TypesPage() {
           </h1>
           <p className="text-lg text-[var(--text-muted)] max-w-2xl mx-auto">
             {lang === 'th'
-              ? 'สำรวจบุคลิกภาพทั้ง 16 ประเภทใน 4 กลุ่ม พร้อมจุดแข็ง จุดอ่อน และอาชีพที่เหมาะสม'
-              : 'Explore all 16 personality types across 4 groups with strengths, weaknesses, and career suggestions.'}
+              ? 'คลิกที่แต่ละประเภทเพื่อดูรายละเอียดทั้งหมด — จุดแข็ง จุดอ่อน อาชีพ และอื่นๆ อีกมากมาย'
+              : 'Click each type to view full details — strengths, weaknesses, careers, and much more.'}
           </p>
         </motion.div>
 
@@ -73,51 +73,49 @@ export default function TypesPage() {
                 {g.types.map((code, ci) => {
                   const p = personalities[code];
                   return (
-                    <motion.div
-                      key={code}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: gi * 0.1 + ci * 0.05 }}
-                      className="rounded-2xl border p-5 hover:shadow-lg hover:-translate-y-1 transition-all cursor-default"
-                      style={{ backgroundColor: colors.light, borderColor: colors.accent + '30' }}
-                    >
-                      <div className="text-3xl mb-2">{p.emoji}</div>
-                      <h3 className="text-lg font-bold" style={{ color: colors.accent }}>
-                        {code}
-                      </h3>
-                      <p className="text-sm font-medium text-[var(--text)] mb-2">
-                        {p.nickname[lang]}
-                      </p>
-                      <p className="text-xs text-[var(--text-muted)] line-clamp-3 mb-3">
-                        {p.overview[lang]}
-                      </p>
-                      <div className="flex flex-wrap gap-1">
-                        {p.careers[lang].slice(0, 3).map((c, i) => (
-                          <span
-                            key={i}
-                            className="text-[10px] px-2 py-0.5 rounded-full border"
-                            style={{ borderColor: colors.accent + '40', color: colors.accent }}
-                          >
-                            {c}
-                          </span>
-                        ))}
-                      </div>
-                    </motion.div>
+                    <Link href={`/types/${code.toLowerCase()}`} key={code}>
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: gi * 0.1 + ci * 0.05 }}
+                        className="rounded-2xl border p-5 hover:shadow-xl hover:-translate-y-2 transition-all cursor-pointer h-full"
+                        style={{ backgroundColor: colors.light, borderColor: colors.accent + '30' }}
+                      >
+                        <div className="text-3xl mb-2">{p.emoji}</div>
+                        <h3 className="text-lg font-bold" style={{ color: colors.accent }}>
+                          {code}
+                        </h3>
+                        <p className="text-sm font-medium text-[var(--text)] mb-2">
+                          {p.nickname[lang]}
+                        </p>
+                        <p className="text-xs text-[var(--text-muted)] line-clamp-3 mb-3">
+                          {p.overview[lang]}
+                        </p>
+                        <div className="flex flex-wrap gap-1">
+                          {p.careers[lang].slice(0, 3).map((c, i) => (
+                            <span
+                              key={i}
+                              className="text-[10px] px-2 py-0.5 rounded-full border"
+                              style={{ borderColor: colors.accent + '40', color: colors.accent }}
+                            >
+                              {c}
+                            </span>
+                          ))}
+                        </div>
+                        <p
+                          className="text-[10px] mt-3 font-semibold"
+                          style={{ color: colors.accent }}
+                        >
+                          {lang === 'th' ? 'คลิกดูรายละเอียด →' : 'View details →'}
+                        </p>
+                      </motion.div>
+                    </Link>
                   );
                 })}
               </div>
             </motion.section>
           );
         })}
-
-        <div className="text-center mt-10">
-          <Link
-            href="/test?mode=standard"
-            className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-violet-600 to-[var(--accent)] text-white font-semibold hover:scale-105 transition-all shadow-lg"
-          >
-            {lang === 'th' ? '✨ เริ่มทดสอบตอนนี้' : '✨ Take the Test Now'}
-          </Link>
-        </div>
       </div>
     </main>
   );
