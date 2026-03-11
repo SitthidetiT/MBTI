@@ -1,0 +1,80 @@
+@import 'tailwindcss';
+
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --accent: #8b5cf6;
+  --accent-light: #ede9fe;
+
+  /* Group colors - made more vibrant but soft */
+  --analysts-bg: rgba(139, 92, 246, 0.08); /* #8b5cf6 opacity */
+  --analysts-acc: #8b5cf6;
+  --diplomats-bg: rgba(16, 185, 129, 0.08); /* #10b981 opacity */
+  --diplomats-acc: #10b981;
+  --sentinels-bg: rgba(59, 130, 246, 0.08); /* #3b82f6 opacity */
+  --sentinels-acc: #3b82f6;
+  --explorers-bg: rgba(245, 158, 11, 0.08); /* #f59e0b opacity */
+  --explorers-acc: #f59e0b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans Thai', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
+  position: relative;
+}
+
+/* Base mesh gradient background effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.12), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.12), transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(245, 158, 11, 0.08), transparent 40%);
+  pointer-events: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Kanit', sans-serif;
+}
+
+/* Smooth transitions on interactive elements */
+button,
+a {
+  transition: all 0.2s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
