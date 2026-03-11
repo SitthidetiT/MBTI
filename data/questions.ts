@@ -1,16 +1,19 @@
-import type { Question, Dimension } from '@/types';
+import type { Question, Dimension, TestMode } from '@/types';
 
-// 60 MBTI questions — NERIS model (5 dimensions × 12 questions)
+// 120 MBTI questions — NERIS model (5 dimensions × 24 questions)
+// Standard mode: 60 questions (12 per dimension)
+// Detailed mode: 120 questions (24 per dimension)
 // direction: 1 = scores for pole A (E/N/T/J/A), -1 = scores for pole B (I/S/F/P/T)
 
 export const questions: Question[] = [
-  // ─── MIND: Extraversion (E) vs Introversion (I) ───
+  // ─── MIND: Extraversion (E) vs Introversion (I) ─── (24 questions)
   {
     id: 1,
     dimension: 'EI',
     th: 'คุณชอบออกไปพบปะสังสรรค์กับผู้คนมากกว่าอยู่คนเดียว',
     en: 'You prefer going out and socializing over spending time alone.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 2,
@@ -18,6 +21,7 @@ export const questions: Question[] = [
     th: 'คุณรู้สึกมีพลังงานหลังจากใช้เวลาอยู่คนเดียว',
     en: 'You feel energized after spending time alone.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 3,
@@ -25,6 +29,7 @@ export const questions: Question[] = [
     th: 'คุณสบายใจที่จะเป็นจุดสนใจในงานสังสรรค์',
     en: 'You are comfortable being the center of attention at parties.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 4,
@@ -32,6 +37,7 @@ export const questions: Question[] = [
     th: 'คุณมักชอบทำงานคนเดียวมากกว่าทำงานเป็นกลุ่ม',
     en: 'You usually prefer working alone rather than in groups.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 5,
@@ -39,6 +45,7 @@ export const questions: Question[] = [
     th: 'คุณชอบพูดคุยกับคนแปลกหน้าในงานปาร์ตี้หรือกิจกรรมสังคม',
     en: 'You enjoy chatting with strangers at parties or social events.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 6,
@@ -46,6 +53,7 @@ export const questions: Question[] = [
     th: 'คุณต้องการเวลาส่วนตัวเพื่อฟื้นฟูพลังงานหลังจากพบผู้คนมาก',
     en: 'You need personal time to recharge after being around many people.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 7,
@@ -53,6 +61,7 @@ export const questions: Question[] = [
     th: 'คุณเริ่มบทสนทนาได้ง่ายในสถานการณ์ใหม่ๆ',
     en: 'You easily initiate conversations in new situations.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 8,
@@ -60,6 +69,7 @@ export const questions: Question[] = [
     th: 'คุณมักคิดก่อนพูด และไม่รีบแบ่งปันความคิด',
     en: "You tend to think before speaking and don't rush to share your thoughts.",
     direction: -1,
+    mode: 'both',
   },
   {
     id: 9,
@@ -67,6 +77,7 @@ export const questions: Question[] = [
     th: 'คุณสนุกกับการมีเพื่อนหลายคนมากกว่ามีเพื่อนสนิทแค่ไม่กี่คน',
     en: 'You enjoy having many friends rather than a few close ones.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 10,
@@ -74,6 +85,7 @@ export const questions: Question[] = [
     th: 'คุณรู้สึกเหนื่อยหลังจากอยู่ในงานสังสรรค์นานๆ',
     en: 'You feel drained after long social gatherings.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 11,
@@ -81,6 +93,7 @@ export const questions: Question[] = [
     th: 'คุณชอบที่จะแสดงออกและพูดคุยถึงความคิดของตัวเองในกลุ่ม',
     en: 'You like expressing yourself and sharing your ideas with groups.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 12,
@@ -88,15 +101,114 @@ export const questions: Question[] = [
     th: 'คุณชอบทำกิจกรรมเงียบๆ เช่น อ่านหนังสือหรือดูหนัง มากกว่าออกไปข้างนอก',
     en: 'You prefer quiet activities like reading or watching movies over going out.',
     direction: -1,
+    mode: 'both',
+  },
+  // Detailed-only EI questions
+  {
+    id: 61,
+    dimension: 'EI',
+    th: 'คุณรู้สึกตื่นเต้นเมื่อได้พบปะผู้คนใหม่ๆ',
+    en: 'You feel excited when meeting new people.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 62,
+    dimension: 'EI',
+    th: 'คุณมักเลือกที่นั่งมุมห้องหรือที่ห่างจากกลุ่มคน',
+    en: 'You tend to choose seats in the corner or away from groups.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 63,
+    dimension: 'EI',
+    th: 'คุณสนุกกับการทำงานแบบ brainstorm ร่วมกับทีม',
+    en: 'You enjoy brainstorming sessions with your team.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 64,
+    dimension: 'EI',
+    th: 'คุณรู้สึกว่าการสนทนาแบบ small talk เป็นเรื่องน่าเหนื่อย',
+    en: 'You find small talk exhausting.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 65,
+    dimension: 'EI',
+    th: 'คุณเป็นคนที่มักจะโทรหาเพื่อนก่อนเพื่อชวนทำกิจกรรม',
+    en: 'You are usually the one who calls friends first to hang out.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 66,
+    dimension: 'EI',
+    th: 'คุณชอบเขียนความคิดลงกระดาษมากกว่าพูดออกมาดังๆ',
+    en: 'You prefer writing your thoughts on paper rather than speaking them aloud.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 67,
+    dimension: 'EI',
+    th: 'คุณรู้สึกมีพลังขึ้นเมื่ออยู่ในบรรยากาศที่คึกคัก',
+    en: 'You feel more energetic in a lively atmosphere.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 68,
+    dimension: 'EI',
+    th: 'คุณชอบใช้เวลาว่างกับงานอดิเรกที่ทำคนเดียวได้',
+    en: 'You prefer spending free time on hobbies you can do alone.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 69,
+    dimension: 'EI',
+    th: 'คุณชอบเรียนรู้สิ่งใหม่ผ่านการพูดคุยและอภิปรายกลุ่ม',
+    en: 'You like learning new things through group discussions.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 70,
+    dimension: 'EI',
+    th: 'คุณรู้สึกว่าการอยู่คนเดียวเป็นช่วงเวลาที่สงบและมีความสุข',
+    en: 'You feel that being alone is a peaceful and happy time.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 71,
+    dimension: 'EI',
+    th: 'คุณชอบนำเสนองานต่อหน้าคนจำนวนมาก',
+    en: 'You enjoy presenting work in front of large audiences.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 72,
+    dimension: 'EI',
+    th: 'คุณรู้สึกว่าความเงียบสงบช่วยให้คุณคิดได้ชัดเจนขึ้น',
+    en: 'You find that silence helps you think more clearly.',
+    direction: -1,
+    mode: 'detailed',
   },
 
-  // ─── ENERGY: Intuition (N) vs Observant/Sensing (S) ───
+  // ─── ENERGY: Intuition (N) vs Observant/Sensing (S) ─── (24 questions)
   {
     id: 13,
     dimension: 'NS',
     th: 'คุณมักจินตนาการถึงความเป็นไปได้มากกว่าโฟกัสที่รายละเอียดจริง',
     en: 'You often imagine possibilities rather than focusing on current realities.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 14,
@@ -104,6 +216,7 @@ export const questions: Question[] = [
     th: 'คุณให้ความสำคัญกับประสบการณ์จริงและข้อเท็จจริงที่จับต้องได้',
     en: 'You value hands-on experience and concrete facts.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 15,
@@ -111,6 +224,7 @@ export const questions: Question[] = [
     th: 'คุณชอบคิดเชิงนามธรรมและทฤษฎีมากกว่าเรื่องปฏิบัติ',
     en: 'You prefer thinking about abstract concepts and theories over practical matters.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 16,
@@ -118,6 +232,7 @@ export const questions: Question[] = [
     th: 'คุณชอบงานที่มีขั้นตอนชัดเจนและผลลัพธ์ที่วัดได้',
     en: 'You prefer tasks with clear steps and measurable results.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 17,
@@ -125,6 +240,7 @@ export const questions: Question[] = [
     th: 'คุณมองหารูปแบบและความเชื่อมโยงที่ซ่อนอยู่ในสิ่งต่างๆ',
     en: 'You look for underlying patterns and connections in things.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 18,
@@ -132,6 +248,7 @@ export const questions: Question[] = [
     th: 'คุณให้ความสนใจกับรายละเอียดเล็กน้อยของสิ่งรอบข้าง',
     en: 'You pay close attention to the small details of your surroundings.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 19,
@@ -139,6 +256,7 @@ export const questions: Question[] = [
     th: 'คุณมักคิดถึงอนาคตและสิ่งที่อาจเป็นไปได้ในระยะยาว',
     en: 'You often think about the future and what could be possible long-term.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 20,
@@ -146,6 +264,7 @@ export const questions: Question[] = [
     th: 'คุณเชื่อถือสิ่งที่พิสูจน์ได้และทดสอบมาแล้วมากกว่าแนวคิดใหม่ๆ',
     en: 'You trust things that are proven and tested over new, unproven ideas.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 21,
@@ -153,6 +272,7 @@ export const questions: Question[] = [
     th: 'คุณสนุกกับการถกเถียงเรื่องแนวคิดและทฤษฎีที่ซับซ้อน',
     en: 'You enjoy debating complex ideas and theoretical concepts.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 22,
@@ -160,6 +280,7 @@ export const questions: Question[] = [
     th: 'คุณมักนำเสนอข้อมูลแบบตรงไปตรงมาและชัดเจน',
     en: 'You usually present information in a direct and straightforward manner.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 23,
@@ -167,6 +288,7 @@ export const questions: Question[] = [
     th: 'คุณรู้สึกดึงดูดกับสิ่งที่แปลกใหม่และแตกต่างจากเดิม',
     en: 'You are drawn to things that are novel and different from the norm.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 24,
@@ -174,15 +296,114 @@ export const questions: Question[] = [
     th: 'คุณเชื่อว่าวิธีที่ได้ผลในอดีตมักจะยังดีในปัจจุบัน',
     en: 'You believe that methods that worked in the past are usually still good now.',
     direction: -1,
+    mode: 'both',
+  },
+  // Detailed-only NS questions
+  {
+    id: 73,
+    dimension: 'NS',
+    th: 'คุณชอบอ่านหนังสือแนว Sci-Fi หรือแฟนตาซีมากกว่าแนวสารคดี',
+    en: 'You prefer reading sci-fi or fantasy over non-fiction.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 74,
+    dimension: 'NS',
+    th: 'คุณเรียนรู้ได้ดีที่สุดจากการลงมือทำจริงมากกว่าอ่านทฤษฎี',
+    en: 'You learn best by doing rather than reading theory.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 75,
+    dimension: 'NS',
+    th: 'คุณมักนึกถึงภาพรวมก่อนรายละเอียด',
+    en: 'You tend to think about the big picture before the details.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 76,
+    dimension: 'NS',
+    th: 'คุณชอบใช้คู่มือขั้นตอนแบบ step-by-step เมื่อทำสิ่งใหม่',
+    en: 'You like using step-by-step guides when doing something new.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 77,
+    dimension: 'NS',
+    th: 'คุณมักสงสัยว่า "จะเกิดอะไรขึ้นถ้า..." เกี่ยวกับสถานการณ์ต่างๆ',
+    en: 'You often wonder "what if..." about various situations.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 78,
+    dimension: 'NS',
+    th: 'คุณชอบจดจำสิ่งต่างๆ ด้วยข้อเท็จจริงและตัวเลข',
+    en: 'You prefer remembering things through facts and numbers.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 79,
+    dimension: 'NS',
+    th: 'คุณรู้สึกว่าจินตนาการสำคัญกว่าประสบการณ์จริง',
+    en: 'You feel that imagination is more important than real experience.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 80,
+    dimension: 'NS',
+    th: 'คุณชอบให้ข้อมูลถูกจัดเรียงเป็นระเบียบและมีหมวดหมู่ชัดเจน',
+    en: 'You like data to be organized neatly with clear categories.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 81,
+    dimension: 'NS',
+    th: 'คุณมักสร้างทฤษฎีของตัวเองเพื่ออธิบายสิ่งต่างๆ',
+    en: 'You often create your own theories to explain things.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 82,
+    dimension: 'NS',
+    th: 'คุณเชื่อว่าสิ่งที่เห็นด้วยตาเปล่าสำคัญกว่าลางสังหรณ์',
+    en: 'You believe what you see with your own eyes matters more than hunches.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 83,
+    dimension: 'NS',
+    th: 'คุณชอบคิดว่าเทคโนโลยีในอนาคตจะเปลี่ยนแปลงโลกอย่างไร',
+    en: 'You enjoy thinking about how future technology will change the world.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 84,
+    dimension: 'NS',
+    th: 'คุณรู้สึกมั่นคงเมื่อมีหลักฐานที่แน่ชัดสนับสนุนการตัดสินใจ',
+    en: 'You feel secure when you have solid evidence supporting your decisions.',
+    direction: -1,
+    mode: 'detailed',
   },
 
-  // ─── NATURE: Thinking (T) vs Feeling (F) ───
+  // ─── NATURE: Thinking (T) vs Feeling (F) ─── (24 questions)
   {
     id: 25,
     dimension: 'TF',
     th: 'คุณตัดสินใจโดยอาศัยตรรกะและเหตุผลมากกว่าความรู้สึก',
     en: 'You make decisions based on logic and reason rather than feelings.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 26,
@@ -190,6 +411,7 @@ export const questions: Question[] = [
     th: 'คุณคำนึงถึงความรู้สึกของผู้อื่นเมื่อต้องตัดสินใจ',
     en: "You consider others' feelings when making decisions.",
     direction: -1,
+    mode: 'both',
   },
   {
     id: 27,
@@ -197,6 +419,7 @@ export const questions: Question[] = [
     th: 'คุณสามารถวิจารณ์ผู้อื่นได้อย่างตรงไปตรงมาโดยไม่รู้สึกผิด',
     en: 'You can criticize others straightforwardly without feeling guilty.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 28,
@@ -204,6 +427,7 @@ export const questions: Question[] = [
     th: 'คุณให้ความสำคัญกับความกลมเกลียวในกลุ่มมากกว่าการยึดหลักการ',
     en: 'You value group harmony more than sticking strictly to principles.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 29,
@@ -211,6 +435,7 @@ export const questions: Question[] = [
     th: 'คุณมองปัญหาอย่างเป็นกลางและตัดอารมณ์ออกได้',
     en: 'You can look at problems objectively and separate emotions from them.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 30,
@@ -218,6 +443,7 @@ export const questions: Question[] = [
     th: 'ความสัมพันธ์ระหว่างบุคคลมีความสำคัญต่อคุณมากกว่าประสิทธิภาพ',
     en: 'Personal relationships matter more to you than efficiency.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 31,
@@ -225,6 +451,7 @@ export const questions: Question[] = [
     th: 'คุณชอบการอภิปรายที่เน้นข้อเท็จจริงและตรรกะ',
     en: 'You prefer discussions focused on facts and logic.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 32,
@@ -232,6 +459,7 @@ export const questions: Question[] = [
     th: 'คุณรู้สึกเห็นอกเห็นใจผู้อื่นได้ง่ายในสถานการณ์ที่ยากลำบาก',
     en: 'You easily empathize with others in difficult situations.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 33,
@@ -239,6 +467,7 @@ export const questions: Question[] = [
     th: 'ความถูกต้องสำคัญกว่าการทำให้ทุกคนรู้สึกดี',
     en: 'Being correct is more important than making everyone feel good.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 34,
@@ -246,6 +475,7 @@ export const questions: Question[] = [
     th: 'คุณรู้สึกไม่สบายใจเมื่อต้องตัดสินใจที่อาจทำให้ผู้อื่นเจ็บปวด',
     en: 'You feel uncomfortable making decisions that might hurt others.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 35,
@@ -253,6 +483,7 @@ export const questions: Question[] = [
     th: 'คุณสามารถแยกแยะงานกับอารมณ์ส่วนตัวได้อย่างชัดเจน',
     en: 'You can clearly separate work from personal emotions.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 36,
@@ -260,15 +491,114 @@ export const questions: Question[] = [
     th: 'คุณมักช่วยเหลือผู้อื่นก่อนโดยไม่ต้องรอให้เขาขอ',
     en: 'You often help others before being asked.',
     direction: -1,
+    mode: 'both',
+  },
+  // Detailed-only TF questions
+  {
+    id: 85,
+    dimension: 'TF',
+    th: 'คุณเชื่อว่าควรจะยุติธรรมกับทุกคนมากกว่าเห็นอกเห็นใจเป็นพิเศษ',
+    en: 'You believe in being fair to everyone rather than showing special sympathy.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 86,
+    dimension: 'TF',
+    th: 'คุณมักจะเป็นคนที่เพื่อนมาระบายปัญหาให้ฟังเสมอ',
+    en: 'You are often the person friends come to for emotional support.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 87,
+    dimension: 'TF',
+    th: 'คุณชอบแก้ปัญหาด้วยการวิเคราะห์ข้อมูลมากกว่าการถามความเห็นคน',
+    en: 'You prefer solving problems through data analysis rather than asking opinions.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 88,
+    dimension: 'TF',
+    th: 'คุณรู้สึกเจ็บปวดเมื่อเห็นผู้อื่นมีความทุกข์ แม้จะไม่เกี่ยวกับตัวเอง',
+    en: 'You feel pain when you see others suffering, even if it has nothing to do with you.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 89,
+    dimension: 'TF',
+    th: 'คุณเชื่อว่าการวิจารณ์ที่สร้างสรรค์คือสิ่งที่ดี แม้จะทำให้คนเสียใจ',
+    en: 'You believe constructive criticism is good, even if it upsets people.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 90,
+    dimension: 'TF',
+    th: 'คุณตัดสินใจโดยคำนึงถึงผลกระทบต่อจิตใจของคนรอบข้างเป็นอันดับแรก',
+    en: 'You make decisions considering the emotional impact on those around you first.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 91,
+    dimension: 'TF',
+    th: 'เมื่อต้องเลือกระหว่างเหตุผลกับอารมณ์ คุณเลือกเหตุผลเสมอ',
+    en: 'When choosing between reason and emotion, you always choose reason.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 92,
+    dimension: 'TF',
+    th: 'คุณรู้สึกว่าการแสดงความเอาใจใส่ต่อคนรอบข้างเป็นสิ่งที่สำคัญมาก',
+    en: 'You feel that showing care for people around you is very important.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 93,
+    dimension: 'TF',
+    th: 'คุณมักจะถามว่า "ทำไม" มากกว่า "ใครจะรู้สึกอย่างไร"',
+    en: 'You tend to ask "why" more than "how will someone feel?"',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 94,
+    dimension: 'TF',
+    th: 'คุณรู้สึกว่าปัญหาส่วนใหญ่แก้ได้ด้วยการทำความเข้าใจอารมณ์ของคน',
+    en: "You feel most problems can be solved by understanding people's emotions.",
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 95,
+    dimension: 'TF',
+    th: 'คุณให้คุณค่ากับความจริงมากกว่าความรู้สึก แม้จะเจ็บปวด',
+    en: 'You value truth over feelings, even when it hurts.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 96,
+    dimension: 'TF',
+    th: 'คุณรู้สึกว่าการให้อภัยและเข้าใจสำคัญกว่าความยุติธรรม',
+    en: 'You feel that forgiveness and understanding are more important than justice.',
+    direction: -1,
+    mode: 'detailed',
   },
 
-  // ─── TACTICS: Judging (J) vs Prospecting/Perceiving (P) ───
+  // ─── TACTICS: Judging (J) vs Prospecting/Perceiving (P) ─── (24 questions)
   {
     id: 37,
     dimension: 'JP',
     th: 'คุณชอบวางแผนล่วงหน้าและทำตามแผนที่วางไว้',
     en: 'You prefer planning ahead and sticking to your plans.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 38,
@@ -276,6 +606,7 @@ export const questions: Question[] = [
     th: 'คุณชอบปล่อยให้ทุกอย่างเป็นไปแบบ spontaneous และยืดหยุ่น',
     en: 'You prefer keeping things spontaneous and flexible.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 39,
@@ -283,6 +614,7 @@ export const questions: Question[] = [
     th: 'คุณรู้สึกสบายใจเมื่อทุกอย่างเป็นระเบียบและมีโครงสร้าง',
     en: 'You feel comfortable when everything is organized and structured.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 40,
@@ -290,6 +622,7 @@ export const questions: Question[] = [
     th: 'คุณชอบทิ้งตัวเลือกไว้และไม่รีบสรุป',
     en: 'You like keeping options open and avoid rushing to conclusions.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 41,
@@ -297,6 +630,7 @@ export const questions: Question[] = [
     th: 'คุณรู้สึกกังวลเมื่องานยังไม่เสร็จสิ้น',
     en: 'You feel anxious when tasks are left unfinished.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 42,
@@ -304,6 +638,7 @@ export const questions: Question[] = [
     th: 'คุณทำงานได้ดีภายใต้ความกดดันของ deadline แบบ last-minute',
     en: 'You work well under the pressure of last-minute deadlines.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 43,
@@ -311,6 +646,7 @@ export const questions: Question[] = [
     th: 'คุณชอบทำตาม schedule และรายการ to-do ที่วางไว้',
     en: 'You like following a schedule and maintaining a to-do list.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 44,
@@ -318,6 +654,7 @@ export const questions: Question[] = [
     th: 'คุณชอบการเปลี่ยนแปลงแบบกะทันหันและสถานการณ์ที่ไม่คาดคิด',
     en: 'You enjoy unexpected changes and spontaneous situations.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 45,
@@ -325,6 +662,7 @@ export const questions: Question[] = [
     th: 'คุณชอบให้ทุกอย่างตัดสินใจเสร็จสิ้นก่อนดำเนินการ',
     en: 'You like having everything decided before taking action.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 46,
@@ -332,6 +670,7 @@ export const questions: Question[] = [
     th: 'คุณมักเริ่มโปรเจคหลายอย่างพร้อมกันโดยไม่รีบเสร็จ',
     en: 'You often start multiple projects simultaneously without rushing to finish them.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 47,
@@ -339,6 +678,7 @@ export const questions: Question[] = [
     th: 'สถานที่ของคุณมักเป็นระเบียบและจัดการได้ดี',
     en: 'Your living space is usually tidy and well-organized.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 48,
@@ -346,15 +686,114 @@ export const questions: Question[] = [
     th: 'คุณมักปรับตัวได้เร็วเมื่อแผนเปลี่ยนแปลงกะทันหัน',
     en: 'You adapt quickly when plans change unexpectedly.',
     direction: -1,
+    mode: 'both',
+  },
+  // Detailed-only JP questions
+  {
+    id: 97,
+    dimension: 'JP',
+    th: 'คุณรู้สึกไม่สบายใจเมื่อตารางเวลาถูกเปลี่ยนกะทันหัน',
+    en: 'You feel uncomfortable when your schedule is changed suddenly.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 98,
+    dimension: 'JP',
+    th: 'คุณชอบทำสิ่งต่างๆ ตามอารมณ์มากกว่าตามแผน',
+    en: 'You prefer doing things based on mood rather than plan.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 99,
+    dimension: 'JP',
+    th: 'คุณมักจัดเตรียมกระเป๋าเดินทางล่วงหน้าหลายวัน',
+    en: 'You usually pack your travel bag several days in advance.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 100,
+    dimension: 'JP',
+    th: 'คุณสนุกกับการท่องเที่ยวแบบไม่มีแผนล่วงหน้า',
+    en: 'You enjoy traveling without a set plan.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 101,
+    dimension: 'JP',
+    th: 'คุณชอบทำบัญชีรายรับ-รายจ่ายอย่างเป็นระบบ',
+    en: 'You like keeping an organized record of your income and expenses.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 102,
+    dimension: 'JP',
+    th: 'คุณมักตัดสินใจในนาทีสุดท้ายว่าจะทำอะไร',
+    en: 'You often decide what to do at the last minute.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 103,
+    dimension: 'JP',
+    th: 'คุณรู้สึกภูมิใจเมื่อทำงานเสร็จตรงเวลาหรือก่อนกำหนด',
+    en: 'You feel proud when you finish work on time or ahead of schedule.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 104,
+    dimension: 'JP',
+    th: 'คุณรู้สึกว่ากฎเกณฑ์บางอย่างมีไว้เพื่อถูกยืดหยุ่น',
+    en: 'You feel that some rules are meant to be flexible.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 105,
+    dimension: 'JP',
+    th: 'คุณชอบที่จะรู้ผลลัพธ์สุดท้ายก่อนเริ่มทำงาน',
+    en: 'You like to know the final outcome before starting a task.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 106,
+    dimension: 'JP',
+    th: 'คุณรู้สึกว่าชีวิตสนุกกว่าเมื่อไม่ได้วางแผนทุกอย่าง',
+    en: 'You feel life is more fun when not everything is planned.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 107,
+    dimension: 'JP',
+    th: 'คุณมักตั้งเป้าหมายชัดเจนและติดตามความคืบหน้า',
+    en: 'You usually set clear goals and track your progress.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 108,
+    dimension: 'JP',
+    th: 'คุณชอบเปิดรับโอกาสใหม่ๆ แม้จะขัดกับแผนเดิม',
+    en: 'You like being open to new opportunities even if they conflict with existing plans.',
+    direction: -1,
+    mode: 'detailed',
   },
 
-  // ─── IDENTITY: Assertive (A) vs Turbulent (T) ───
+  // ─── IDENTITY: Assertive (A) vs Turbulent (T) ─── (24 questions)
   {
     id: 49,
     dimension: 'AT',
     th: 'คุณมั่นใจในตัวเองและไม่กังวลเกี่ยวกับสิ่งที่ผู้อื่นคิดถึงคุณ',
     en: "You are confident in yourself and don't worry about what others think of you.",
     direction: 1,
+    mode: 'both',
   },
   {
     id: 50,
@@ -362,6 +801,7 @@ export const questions: Question[] = [
     th: 'คุณมักวิพากษ์วิจารณ์ตัวเองหลังจากทำสิ่งต่างๆ',
     en: 'You often criticize yourself after doing things.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 51,
@@ -369,6 +809,7 @@ export const questions: Question[] = [
     th: 'คุณรู้สึกสงบและไม่ค่อยเครียดกับปัญหาต่างๆ',
     en: 'You feel calm and rarely get stressed by problems.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 52,
@@ -376,6 +817,7 @@ export const questions: Question[] = [
     th: 'คุณมักกังวลถึงผลที่อาจเกิดขึ้นก่อนตัดสินใจ',
     en: 'You often worry about potential outcomes before making decisions.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 53,
@@ -383,6 +825,7 @@ export const questions: Question[] = [
     th: 'คุณพอใจในความสำเร็จของตัวเองโดยไม่ต้องการคำยืนยันจากผู้อื่น',
     en: 'You are satisfied with your achievements without needing validation from others.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 54,
@@ -390,6 +833,7 @@ export const questions: Question[] = [
     th: 'ความผิดพลาดเล็กน้อยทำให้คุณรู้สึกกังวลนานกว่าที่ควร',
     en: 'Minor mistakes tend to bother you longer than they should.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 55,
@@ -397,6 +841,7 @@ export const questions: Question[] = [
     th: 'คุณรู้สึกมั่นคงทางอารมณ์แม้ในสถานการณ์ที่กดดัน',
     en: 'You feel emotionally stable even in high-pressure situations.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 56,
@@ -404,6 +849,7 @@ export const questions: Question[] = [
     th: 'คุณมักตั้งค่ามาตรฐานสำหรับตัวเองสูงกว่าความเป็นจริง',
     en: 'You often set standards for yourself that are higher than realistic.',
     direction: -1,
+    mode: 'both',
   },
   {
     id: 57,
@@ -411,6 +857,7 @@ export const questions: Question[] = [
     th: 'คุณไม่ค่อยครุ่นคิดถึงสิ่งที่ผ่านไปแล้วหรือสิ่งที่อาจเกิดขึ้น',
     en: 'You rarely dwell on things that have passed or things that might happen.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 58,
@@ -418,6 +865,7 @@ export const questions: Question[] = [
     th: 'คุณรู้สึกกดดันกับตัวเองเมื่อยังไม่บรรลุเป้าหมาย',
     en: "You feel pressured when you haven't yet achieved your goals.",
     direction: -1,
+    mode: 'both',
   },
   {
     id: 59,
@@ -425,6 +873,7 @@ export const questions: Question[] = [
     th: 'คุณรู้สึกมั่นใจในทักษะและความสามารถของตัวเอง',
     en: 'You feel confident in your skills and abilities.',
     direction: 1,
+    mode: 'both',
   },
   {
     id: 60,
@@ -432,8 +881,113 @@ export const questions: Question[] = [
     th: 'คุณมักรู้สึกว่าตัวเองสามารถทำได้ดีกว่านี้เสมอ',
     en: 'You often feel that you could always do better.',
     direction: -1,
+    mode: 'both',
+  },
+  // Detailed-only AT questions
+  {
+    id: 109,
+    dimension: 'AT',
+    th: 'คุณไม่ค่อยเปรียบเทียบตัวเองกับผู้อื่น',
+    en: 'You rarely compare yourself to others.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 110,
+    dimension: 'AT',
+    th: 'คุณมักคิดซ้ำแล้วซ้ำเล่าเกี่ยวกับสิ่งที่ทำพลาดไปแล้ว',
+    en: 'You often replay your mistakes in your mind over and over.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 111,
+    dimension: 'AT',
+    th: 'คุณรู้สึกผ่อนคลายกับสถานการณ์ที่ไม่แน่นอน',
+    en: 'You feel relaxed in uncertain situations.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 112,
+    dimension: 'AT',
+    th: 'คุณรู้สึกว่าตัวเองยังไม่ดีพอเมื่อเทียบกับคนรอบข้าง',
+    en: 'You feel you are not good enough compared to those around you.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 113,
+    dimension: 'AT',
+    th: 'คุณสามารถรับคำวิจารณ์ได้โดยไม่เสียความมั่นใจ',
+    en: 'You can accept criticism without losing confidence.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 114,
+    dimension: 'AT',
+    th: 'คุณมักกังวลว่าคนอื่นจะตัดสินคุณอย่างไร',
+    en: 'You often worry about how others will judge you.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 115,
+    dimension: 'AT',
+    th: 'คุณรู้สึกพอใจกับชีวิตปัจจุบันของตัวเอง',
+    en: 'You feel satisfied with your current life situation.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 116,
+    dimension: 'AT',
+    th: 'คุณมักรู้สึกว่าเวลาไม่เพียงพอสำหรับสิ่งที่ต้องทำ',
+    en: 'You often feel that there is not enough time for everything you need to do.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 117,
+    dimension: 'AT',
+    th: 'คุณมองความล้มเหลวว่าเป็นบทเรียน ไม่ใช่จุดจบ',
+    en: 'You see failure as a lesson, not an endpoint.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 118,
+    dimension: 'AT',
+    th: 'คุณรู้สึกวิตกกังวลบ่อยโดยไม่มีเหตุผลที่ชัดเจน',
+    en: 'You often feel anxious without a clear reason.',
+    direction: -1,
+    mode: 'detailed',
+  },
+  {
+    id: 119,
+    dimension: 'AT',
+    th: 'คุณมักจะปล่อยวางเรื่องที่ควบคุมไม่ได้อย่างง่ายดาย',
+    en: 'You easily let go of things you cannot control.',
+    direction: 1,
+    mode: 'detailed',
+  },
+  {
+    id: 120,
+    dimension: 'AT',
+    th: 'คุณมักรู้สึกกระตือรือร้นอย่างรุนแรงจนทำให้นอนไม่หลับ',
+    en: 'You often feel so restless that it affects your sleep.',
+    direction: -1,
+    mode: 'detailed',
   },
 ];
+
+export function getQuestionsByMode(mode: TestMode): Question[] {
+  if (mode === 'detailed') {
+    return questions; // All 120 questions
+  }
+  return questions.filter((q) => q.mode === 'both'); // Only 60 standard questions
+}
 
 export function shuffleQuestions(qs: Question[]): Question[] {
   const byDimension: Record<Dimension, Question[]> = { EI: [], NS: [], TF: [], JP: [], AT: [] };

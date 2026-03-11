@@ -6,6 +6,8 @@ export type Dimension = 'EI' | 'NS' | 'TF' | 'JP' | 'AT';
 
 export type Group = 'analysts' | 'diplomats' | 'sentinels' | 'explorers';
 
+export type TestMode = 'standard' | 'detailed';
+
 export type TypeCode =
   | 'INTJ'
   | 'INTP'
@@ -40,6 +42,8 @@ export interface Question {
   th: string;
   en: string;
   direction: 1 | -1;
+  mode: TestMode | 'both';
+  weight?: number;
 }
 
 export interface AnswerState {
@@ -59,6 +63,9 @@ export interface PersonalityData {
   weaknesses: Record<Lang, string[]>;
   careers: Record<Lang, string[]>;
   relationships: Record<Lang, string>;
+  workStyle: Record<Lang, string[]>;
+  growthAreas: Record<Lang, string[]>;
+  famousPeople: string[];
 }
 
 export interface GroupColors {

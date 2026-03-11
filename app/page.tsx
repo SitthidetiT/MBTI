@@ -47,18 +47,32 @@ export default function HomePage() {
           <p className="text-lg md:text-xl text-[var(--text-muted)] max-w-2xl mx-auto mb-10 leading-relaxed font-light">
             {tx.hero_subtitle as string}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-violet-600 to-indigo-600 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
               <Link
-                href="/test"
-                className="relative inline-flex items-center gap-2 px-10 py-4 rounded-full bg-gradient-to-r from-violet-600 to-[var(--accent)] text-white font-semibold text-lg hover:scale-[1.02] transition-all shadow-xl"
+                href="/test?mode=standard"
+                className="relative inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-violet-600 to-[var(--accent)] text-white font-semibold text-base hover:scale-[1.02] transition-all shadow-xl"
               >
-                {tx.hero_cta as string} →
+                📝 {tx.hero_cta_standard as string}
               </Link>
             </div>
-            <p className="text-sm font-medium text-[var(--text-muted)] bg-white/50 backdrop-blur-sm px-4 py-2 rounded-full border border-white/40 shadow-sm">
-              ⏱ {tx.hero_time as string}
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
+              <Link
+                href="/test?mode=detailed"
+                className="relative inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold text-base hover:scale-[1.02] transition-all shadow-xl"
+              >
+                🔬 {tx.hero_cta_detailed as string}
+              </Link>
+            </div>
+          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4">
+            <p className="text-xs font-medium text-[var(--text-muted)] bg-white/50 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/40 shadow-sm">
+              ⏱ {tx.hero_time_standard as string}
+            </p>
+            <p className="text-xs font-medium text-[var(--text-muted)] bg-white/50 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/40 shadow-sm">
+              ⏱ {tx.hero_time_detailed as string}
             </p>
           </div>
         </motion.div>

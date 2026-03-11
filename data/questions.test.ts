@@ -1,8 +1,18 @@
-import { questions, shuffleQuestions } from './questions';
+import { questions, getQuestionsByMode, shuffleQuestions } from './questions';
 
 describe('Questions Logic', () => {
-  it('should have 60 questions', () => {
-    expect(questions.length).toBe(60);
+  it('should have 120 total questions', () => {
+    expect(questions.length).toBe(120);
+  });
+
+  it('standard mode should have 60 questions', () => {
+    const standard = getQuestionsByMode('standard');
+    expect(standard.length).toBe(60);
+  });
+
+  it('detailed mode should have 120 questions', () => {
+    const detailed = getQuestionsByMode('detailed');
+    expect(detailed.length).toBe(120);
   });
 
   it('shuffleQuestions should return an array of the same length', () => {
@@ -32,5 +42,17 @@ describe('Questions Logic', () => {
       expect(q.th.length).toBeGreaterThan(0);
       expect(q.en.length).toBeGreaterThan(0);
     });
+  });
+
+  it('each dimension should have 24 questions total', () => {
+    const dimCounts: Record<string, number> = {};
+    questions.forEach((q) => {
+      dimCounts[q.dimension] = (dimCounts[q.dimension] || 0) + 1;
+    });
+    expect(dimCounts['EI']).toBe(24);
+    expect(dimCounts['NS']).toBe(24);
+    expect(dimCounts['TF']).toBe(24);
+    expect(dimCounts['JP']).toBe(24);
+    expect(dimCounts['AT']).toBe(24);
   });
 });

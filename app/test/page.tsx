@@ -1,21 +1,23 @@
 'use client';
 import { useState, useEffect, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import QuestionCard from '@/components/QuestionCard';
 import ProgressBar from '@/components/ProgressBar';
 import { useLang } from '@/context/LanguageContext';
 import { t } from '@/data/translations';
-import { questions, shuffleQuestions } from '@/data/questions';
-import type { Answers, Dimension } from '@/types';
+import { getQuestionsByMode, shuffleQuestions } from '@/data/questions';
+import type { Answers, Dimension, TestMode } from '@/types';
 
 export default function TestPage() {
   const { lang } = useLang();
   const tx = t[lang];
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const mode = (searchParams.get('mode') as TestMode) || 'standard';
 
-  const [orderedQuestions] = useState(() => shuffleQuestions(questions));
+  const [orderedQuestions] = useState(() => shuffleQuestions(getQuestionsByMode(mode)));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const [direction, setDirection] = useState(1);
