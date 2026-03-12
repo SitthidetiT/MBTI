@@ -198,6 +198,52 @@ export default function HomePage() {
         </motion.div>
       </section>
 
+      {/* Love Type Banner */}
+      <section className="py-10 px-4 max-w-5xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <Link href="/love-test">
+            <div
+              className="relative rounded-[2rem] overflow-hidden p-8 sm:p-10 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+              style={{
+                background: 'linear-gradient(135deg, #fff1f2 0%, #fdf4ff 50%, #eff6ff 100%)',
+              }}
+            >
+              <div className="absolute top-4 right-8 text-5xl select-none opacity-30">💕</div>
+              <div className="absolute bottom-4 left-10 text-3xl select-none opacity-20">💗</div>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                <div className="text-5xl">💘</div>
+                <div className="flex-1">
+                  <p className="text-xs font-bold uppercase tracking-widest text-pink-400 mb-1">
+                    New
+                  </p>
+                  <h2
+                    className="text-xl sm:text-2xl font-extrabold mb-1"
+                    style={{ color: '#e11d48' }}
+                  >
+                    {lang === 'th' ? 'แบบทดสอบบุคลิกภาพความรัก' : 'Love Type Personality Test'}
+                  </h2>
+                  <p className="text-sm text-gray-500 leading-relaxed max-w-md">
+                    {lang === 'th'
+                      ? 'ค้นพบว่าคุณเป็นคนรักแบบไหนใน 4 มิติ ผู้นำหรือผู้ตาม? เปิดใจง่ายหรือระวังตัว? หัวใจหรือเหตุผล? เปิดเผยหรือสังเกต?'
+                      : 'Discover your romantic personality across 4 dimensions: Leader or Follower? Amorous or Cautious? Passionate or Rational? Expressive or Observant?'}
+                  </p>
+                </div>
+                <div
+                  className="shrink-0 px-6 py-3 rounded-full text-white font-bold text-sm shadow-md hover:scale-105 transition-transform"
+                  style={{ background: 'linear-gradient(135deg, #e11d48, #c026d3)' }}
+                >
+                  {lang === 'th' ? '💕 เริ่มทดสอบ' : '💕 Start Test'}
+                </div>
+              </div>
+            </div>
+          </Link>
+        </motion.div>
+      </section>
+
       {/* Feature Sections */}
       <section className="py-12 px-4 max-w-5xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

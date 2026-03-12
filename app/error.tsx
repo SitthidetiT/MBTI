@@ -31,6 +31,7 @@ export default function Error({
         </p>
         <button
           onClick={reset}
+          aria-label="Try again"
           className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-rose-500 text-white font-semibold hover:bg-rose-600 hover:scale-105 transition-all shadow-lg shadow-rose-500/30"
         >
           🔄 ลองใหม่อีกครั้ง

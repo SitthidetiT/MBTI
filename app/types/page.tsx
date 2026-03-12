@@ -78,36 +78,49 @@ export default function TypesPage() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: gi * 0.1 + ci * 0.05 }}
-                        className="rounded-2xl border p-5 hover:shadow-xl hover:-translate-y-2 transition-all cursor-pointer h-full"
+                        className="rounded-2xl border hover:shadow-xl hover:-translate-y-2 transition-all cursor-pointer h-full overflow-hidden"
                         style={{ backgroundColor: colors.light, borderColor: colors.accent + '30' }}
                       >
-                        <div className="text-3xl mb-2">{p.emoji}</div>
-                        <h3 className="text-lg font-bold" style={{ color: colors.accent }}>
-                          {code}
-                        </h3>
-                        <p className="text-sm font-medium text-[var(--text)] mb-2">
-                          {p.nickname[lang]}
-                        </p>
-                        <p className="text-xs text-[var(--text-muted)] line-clamp-3 mb-3">
-                          {p.overview[lang]}
-                        </p>
-                        <div className="flex flex-wrap gap-1">
-                          {p.careers[lang].slice(0, 3).map((c, i) => (
-                            <span
-                              key={i}
-                              className="text-[10px] px-2 py-0.5 rounded-full border"
-                              style={{ borderColor: colors.accent + '40', color: colors.accent }}
-                            >
-                              {c}
-                            </span>
-                          ))}
-                        </div>
-                        <p
-                          className="text-[10px] mt-3 font-semibold"
-                          style={{ color: colors.accent }}
+                        {/* Character illustration */}
+                        <div
+                          className="w-full h-44 flex items-end justify-center overflow-hidden"
+                          style={{ backgroundColor: colors.bg }}
                         >
-                          {lang === 'th' ? 'คลิกดูรายละเอียด →' : 'View details →'}
-                        </p>
+                          <img
+                            src={`https://api.dicebear.com/9.x/open-peeps/svg?seed=${code}&backgroundColor=${colors.bg.replace('#', '')}`}
+                            alt={`${code} character`}
+                            className="w-36 h-36 object-contain object-bottom"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div className="p-5">
+                          <h3 className="text-lg font-bold" style={{ color: colors.accent }}>
+                            {code}
+                          </h3>
+                          <p className="text-sm font-medium text-[var(--text)] mb-2">
+                            {p.nickname[lang]}
+                          </p>
+                          <p className="text-xs text-[var(--text-muted)] line-clamp-3 mb-3">
+                            {p.overview[lang]}
+                          </p>
+                          <div className="flex flex-wrap gap-1">
+                            {p.careers[lang].slice(0, 3).map((c, i) => (
+                              <span
+                                key={i}
+                                className="text-[10px] px-2 py-0.5 rounded-full border"
+                                style={{ borderColor: colors.accent + '40', color: colors.accent }}
+                              >
+                                {c}
+                              </span>
+                            ))}
+                          </div>
+                          <p
+                            className="text-[10px] mt-3 font-semibold"
+                            style={{ color: colors.accent }}
+                          >
+                            {lang === 'th' ? 'คลิกดูรายละเอียด →' : 'View details →'}
+                          </p>
+                        </div>
                       </motion.div>
                     </Link>
                   );

@@ -14,7 +14,10 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative z-10 border-t border-[var(--border)] bg-white/40 backdrop-blur-md mt-20">
+    <footer
+      className="relative z-10 border-t border-[var(--border)] bg-white/40 backdrop-blur-md mt-20"
+      role="contentinfo"
+    >
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           {/* Brand */}
@@ -38,7 +41,7 @@ export default function Footer() {
             <h4 className="font-semibold text-[var(--text)] mb-3">
               {lang === 'th' ? 'ลิงก์ด่วน' : 'Quick Links'}
             </h4>
-            <ul className="space-y-2">
+            <ul className="space-y-2" aria-label={lang === 'th' ? 'ลิงก์ด่วน' : 'Quick Links'}>
               {links.map((l) => (
                 <li key={l.href}>
                   <Link

@@ -97,12 +97,14 @@ export default function ShareCard({ typeKey, identity, nickname, group, lang }: 
       <div className="flex gap-3 flex-wrap justify-center">
         <button
           onClick={handleDownload}
+          aria-label={tx.btn_download as string}
           className="flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-[var(--accent)] text-[var(--accent)] font-semibold text-sm hover:bg-[var(--accent-light)] cursor-pointer"
         >
           ⬇️ {tx.btn_download as string}
         </button>
         <button
           onClick={handleShare}
+          aria-label={tx.btn_share as string}
           className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--accent)] text-white font-semibold text-sm hover:opacity-90 cursor-pointer"
         >
           📤 {tx.btn_share as string}

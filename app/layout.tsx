@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: 'MBTI Personality Test | ค้นหาบุคลิกภาพ 16 แบบของคุณ',
     description:
       'แบบทดสอบบุคลิกภาพ MBTI ที่แม่นยำที่สุด คำนวณผลลัพธ์อย่างละเอียดผ่านระบบ 5 มิติ (รวมถึง A/T). เริ่มทดสอบฟรีทันที!',
-    url: 'https://your-mbti-domain.com', // To be updated when deployed
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://16personalityth.vercel.app',
     siteName: '16PersonalityTH',
     type: 'website',
   },

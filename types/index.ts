@@ -73,3 +73,45 @@ export interface GroupColors {
   accent: string;
   light: string;
 }
+
+// ─── Love Type ───────────────────────────────────────────────────────────────
+
+export type LoveDimension = 'LF' | 'AC' | 'PR' | 'EO';
+
+export type LoveTypeCode =
+  | 'LAPE'
+  | 'LAPO'
+  | 'LARE'
+  | 'LARO'
+  | 'LCPE'
+  | 'LCPO'
+  | 'LCRE'
+  | 'LCRO'
+  | 'FAPE'
+  | 'FAPO'
+  | 'FARE'
+  | 'FARO'
+  | 'FCPE'
+  | 'FCPO'
+  | 'FCRE'
+  | 'FCRO';
+
+export interface LoveQuestion {
+  id: number;
+  dimension: LoveDimension;
+  th: string;
+  en: string;
+  /** 1 = YES scores first pole (L/A/P/E), -1 = YES scores second pole (F/C/R/O) */
+  direction: 1 | -1;
+}
+
+export interface LovePersonalityData {
+  emoji: string;
+  nickname: Record<Lang, string>;
+  overview: Record<Lang, string>;
+  loveStrengths: Record<Lang, string[]>;
+  loveChallenges: Record<Lang, string[]>;
+  idealDate: Record<Lang, string>;
+  communicationStyle: Record<Lang, string>;
+  color: GroupColors;
+}

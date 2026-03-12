@@ -97,10 +97,10 @@ describe('Assessment Logic Verification', () => {
     expect(scores.JP).toBe(50);
     expect(scores.AT).toBe(50);
 
-    // 50% exactly biases towards I, N, F, P, T based on > 50 and >= 50 strictness
+    // 50% exactly biases towards I, S, F, P, T (all use > 50)
     const typeKey = getTypeKey(scores);
     const identity = getIdentity(scores);
-    expect(typeKey).toBe('INFP');
+    expect(typeKey).toBe('ISFP');
     expect(identity).toBe('T');
   });
 

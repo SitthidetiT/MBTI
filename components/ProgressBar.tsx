@@ -18,7 +18,14 @@ export default function ProgressBar({ current, total, lang }: ProgressBarProps) 
   const msg = msgs[msgIndex];
 
   return (
-    <div className="w-full max-w-xl mx-auto px-4">
+    <div
+      className="w-full max-w-xl mx-auto px-4"
+      role="progressbar"
+      aria-valuenow={pct}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-label={`${tx.question_of as string} ${current} ${tx.of as string} ${total}`}
+    >
       <div className="flex items-center justify-between mb-3 text-sm font-medium">
         <span className="text-[var(--text-muted)] bg-white/50 backdrop-blur-sm px-3 py-1 rounded-full border border-white/40">
           {tx.question_of as string} {current} {tx.of as string} {total}

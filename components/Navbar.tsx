@@ -6,6 +6,7 @@ import { t } from '@/data/translations';
 
 const navLinks = [
   { href: '/test?mode=standard', labelTh: 'แบบทดสอบ', labelEn: 'Test' },
+  { href: '/love-test', labelTh: '💕 ความรัก', labelEn: '💕 Love' },
   { href: '/types', labelTh: 'ประเภทบุคลิกภาพ', labelEn: 'Types' },
   { href: '/careers', labelTh: 'เส้นทางอาชีพ', labelEn: 'Careers' },
   { href: '/services', labelTh: 'บริการ', labelEn: 'Services' },
@@ -18,7 +19,11 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/60 backdrop-blur-xl border-b border-white/50 shadow-sm">
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 bg-white/60 backdrop-blur-xl border-b border-white/50 shadow-sm"
+      role="navigation"
+      aria-label="Main navigation"
+    >
       <div className="max-w-6xl mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
         <Link
           href="/"
@@ -29,7 +34,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-1" role="menubar">
           {navLinks.map((l) => (
             <Link
               key={l.href}
@@ -80,7 +85,10 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-white/90 backdrop-blur-xl border-t border-white/50 px-4 pb-4 space-y-1">
+        <div
+          className="md:hidden bg-white/90 backdrop-blur-xl border-t border-white/50 px-4 pb-4 space-y-1"
+          role="menu"
+        >
           {navLinks.map((l) => (
             <Link
               key={l.href}

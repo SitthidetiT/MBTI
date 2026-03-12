@@ -1,11 +1,13 @@
 'use client';
 import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import { useLang } from '@/context/LanguageContext';
 import { t } from '@/data/translations';
 import { personalities, GROUP_COLORS, getTypeKey } from '@/data/personalities';
+import { saveResult, type ResultHistory } from '@/data/resultHistory';
 import type { DimScores } from '@/types';
 
 // Extract SectionCard into a smaller component for reuse.
@@ -40,16 +42,23 @@ export default function CareerResultPage() {
   const tx = t[lang];
   const searchParams = useSearchParams();
 
+  const clamp = (v: number) => Math.max(0, Math.min(100, isNaN(v) ? 50 : v));
   const scores: DimScores = {
-    EI: Number(searchParams.get('EI')) || 50,
-    NS: Number(searchParams.get('NS')) || 50,
-    TF: Number(searchParams.get('TF')) || 50,
-    JP: Number(searchParams.get('JP')) || 50,
-    AT: Number(searchParams.get('AT')) || 50,
+    EI: clamp(Number(searchParams.get('EI'))),
+    NS: clamp(Number(searchParams.get('NS'))),
+    TF: clamp(Number(searchParams.get('TF'))),
+    JP: clamp(Number(searchParams.get('JP'))),
+    AT: clamp(Number(searchParams.get('AT'))),
   };
 
   const typeKey = getTypeKey(scores);
   const data = personalities[typeKey];
+
+  useEffect(() => {
+    if (data) {
+      saveResult({ typeKey, identity: '', scores, date: new Date().toISOString(), mode: 'career' });
+    }
+  }, [typeKey, data, scores]);
 
   if (!data) {
     return (

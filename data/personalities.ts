@@ -1344,7 +1344,7 @@ export const personalities: Record<TypeCode, PersonalityData> = {
 
 export function getTypeKey(scores: DimScores): TypeCode {
   const E = scores.EI > 50 ? 'E' : 'I';
-  const N = scores.NS >= 50 ? 'N' : 'S';
+  const N = scores.NS > 50 ? 'N' : 'S';
   const T = scores.TF > 50 ? 'T' : 'F';
   const J = scores.JP > 50 ? 'J' : 'P';
   return `${E}${N}${T}${J}` as TypeCode;

@@ -78,9 +78,10 @@ export default function TestPage() {
       const params = new URLSearchParams(
         Object.fromEntries(Object.entries(scores).map(([k, v]) => [k, String(v)]))
       );
+      params.set('mode', mode);
       router.push(`/result?${params.toString()}`);
     },
-    [router]
+    [router, mode]
   );
 
   const handleAnswer = useCallback(
@@ -162,6 +163,7 @@ export default function TestPage() {
           <button
             onClick={goPrev}
             disabled={currentIndex === 0}
+            aria-label={tx.back as string}
             className="flex items-center gap-1 px-4 py-2 rounded-full text-sm text-[var(--text-muted)] border border-[var(--border)] hover:border-[var(--accent)] hover:text-[var(--accent)] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
           >
             ← {tx.back as string}
@@ -170,6 +172,7 @@ export default function TestPage() {
           {currentIndex === total - 1 ? (
             <button
               onClick={handleFinish}
+              aria-label={tx.finish as string}
               className="px-6 py-2.5 rounded-full bg-[var(--accent)] text-white font-semibold text-sm hover:opacity-90 cursor-pointer"
             >
               {tx.finish as string}
@@ -178,6 +181,7 @@ export default function TestPage() {
             <button
               onClick={goNext}
               disabled={answers[currentQ?.id] === undefined}
+              aria-label={tx.next as string}
               className="px-6 py-2.5 rounded-full bg-[var(--accent)] text-white font-semibold text-sm hover:opacity-90 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
             >
               {tx.next as string}

@@ -3,11 +3,12 @@ import { personalities } from '@/data/personalities';
 import type { TypeCode } from '@/types';
 
 type Props = {
-  params: { type: string };
+  params: Promise<{ type: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const typeCode = params.type.toUpperCase() as TypeCode;
+  const { type } = await params;
+  const typeCode = type.toUpperCase() as TypeCode;
   const data = personalities[typeCode];
 
   // Fallback

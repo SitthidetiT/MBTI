@@ -79,6 +79,12 @@ export const t: I18n = {
     copied: 'คัดลอกลิงก์แล้ว!',
     no_result: 'ไม่พบผลลัพธ์',
     retake_link: 'ทำแบบทดสอบใหม่',
+    result_mode_standard: 'ผลลัพธ์มาตรฐาน (60 ข้อ)',
+    result_mode_detailed: 'ผลลัพธ์เจาะลึก (120 ข้อ)',
+    result_try_detailed: 'ต้องการผลลัพธ์เจาะลึกกว่านี้?',
+    result_try_detailed_sub:
+      'แบบ 120 ข้อ เปิดเผย Identity Type (A/T), อาชีพครบทุกตำแหน่ง, ความสัมพันธ์, สิ่งที่ควรพัฒนา และบุคคลชื่อดัง',
+    result_try_detailed_btn: 'ลองแบบละเอียด 120 ข้อ (ฟรี!) →',
   },
   en: {
     nav_logo: 'MBTI Personality Test',
@@ -156,5 +162,11 @@ export const t: I18n = {
     copied: 'Link copied!',
     no_result: 'No result found',
     retake_link: 'Retake test',
+    result_mode_standard: 'Standard Result (60 Questions)',
+    result_mode_detailed: 'In-Depth Result (120 Questions)',
+    result_try_detailed: 'Want a more in-depth result?',
+    result_try_detailed_sub:
+      'The 120-question version reveals your Identity type (A/T), full career list, relationships, growth areas and famous people.',
+    result_try_detailed_btn: 'Try 120 Questions (Free!) →',
   },
 };

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import { useLang } from '@/context/LanguageContext';
 import { personalities, GROUP_COLORS } from '@/data/personalities';
+import { compatibility } from '@/data/compatibility';
 import type { TypeCode, Lang, Group } from '@/types';
 
 const groupNames: Record<string, Record<Lang, string>> = {
@@ -13,6 +14,46 @@ const groupNames: Record<string, Record<Lang, string>> = {
   sentinels: { th: 'ผู้พิทักษ์ (Sentinels)', en: 'Sentinels' },
   explorers: { th: 'นักสำรวจ (Explorers)', en: 'Explorers' },
 };
+
+function CompatCard({
+  typeCode,
+  lang,
+  tier,
+}: {
+  typeCode: TypeCode;
+  lang: Lang;
+  tier: 'natural' | 'good';
+}) {
+  const pData = personalities[typeCode];
+  const pColors = GROUP_COLORS[pData.group];
+  return (
+    <Link href={`/types/${typeCode.toLowerCase()}`}>
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        className="relative flex flex-col items-center text-center rounded-xl border-2 overflow-hidden cursor-pointer w-24"
+        style={{ borderColor: tier === 'natural' ? '#f472b6' : '#34d399' }}
+      >
+        <div
+          className="w-full h-16 flex items-end justify-center overflow-hidden"
+          style={{ backgroundColor: pColors.bg }}
+        >
+          <img
+            src={`https://api.dicebear.com/9.x/open-peeps/svg?seed=${typeCode}&backgroundColor=${pColors.bg.replace('#', '')}`}
+            alt={typeCode}
+            className="w-12 h-12 object-contain object-bottom"
+          />
+        </div>
+        <div className="bg-white/90 px-2 py-1.5 w-full">
+          <p className="text-sm font-extrabold" style={{ color: pColors.accent }}>
+            {typeCode}
+          </p>
+          <p className="text-xs text-[var(--text-muted)] leading-tight">{pData.nickname[lang]}</p>
+        </div>
+        <span className="absolute top-1 right-1 text-xs">{tier === 'natural' ? '❤️' : '💚'}</span>
+      </motion.div>
+    </Link>
+  );
+}
 
 function Section({
   title,
@@ -72,7 +113,18 @@ export default function TypeDetailPage() {
           animate={{ opacity: 1, scale: 1 }}
           className="text-center mb-6"
         >
-          <div className="text-8xl mb-4">{data.emoji}</div>
+          {/* Character illustration */}
+          <div
+            className="w-56 h-56 mx-auto mb-4 rounded-3xl overflow-hidden flex items-end justify-center"
+            style={{ backgroundColor: colors.bg }}
+          >
+            <img
+              src={`https://api.dicebear.com/9.x/open-peeps/svg?seed=${typeCode}&backgroundColor=${colors.bg.replace('#', '')}`}
+              alt={`${typeCode} character`}
+              className="w-48 h-48 object-contain object-bottom"
+              loading="eager"
+            />
+          </div>
           <h1 className="text-5xl sm:text-6xl font-extrabold mb-2" style={{ color: colors.accent }}>
             {typeCode}
           </h1>
@@ -140,6 +192,38 @@ export default function TypeDetailPage() {
 
           <Section title={lang === 'th' ? 'ความสัมพันธ์' : 'Relationships'} icon="❤️" delay={0.35}>
             <p className="text-[var(--text-muted)] leading-relaxed">{data.relationships[lang]}</p>
+          </Section>
+
+          <Section
+            title={lang === 'th' ? 'ความเข้ากันได้ในความรัก' : 'Love Compatibility'}
+            icon="💕"
+            delay={0.38}
+          >
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-5">
+              {compatibility[typeCode].loveStyle[lang]}
+            </p>
+            <div className="space-y-4">
+              <div>
+                <p className="text-xs font-bold text-pink-500 uppercase tracking-wide mb-2">
+                  {lang === 'th' ? '❤️ คู่ที่เหมาะสมที่สุด' : '❤️ Natural Partner'}
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {compatibility[typeCode].natural.map((code) => (
+                    <CompatCard key={code} typeCode={code} lang={lang} tier="natural" />
+                  ))}
+                </div>
+              </div>
+              <div>
+                <p className="text-xs font-bold text-emerald-600 uppercase tracking-wide mb-2">
+                  {lang === 'th' ? '💚 เข้ากันได้ดี' : '💚 Great Matches'}
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {compatibility[typeCode].good.map((code) => (
+                    <CompatCard key={code} typeCode={code} lang={lang} tier="good" />
+                  ))}
+                </div>
+              </div>
+            </div>
           </Section>
 
           <Section
